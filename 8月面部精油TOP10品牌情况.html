@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8月面部精油TOP10品牌情况</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Microsoft YaHei','Segoe UI',sans-serif; background:#f5f6fa; color:#333; line-height:1.6; }
+.container { max-width:1200px; margin:0 auto; padding:24px 16px; }
+h1 { text-align:center; font-size:28px; margin:12px 0 8px; color:#1a1a2e; }
+.subtitle { text-align:center; color:#888; font-size:14px; margin-bottom:24px; }
+
+/* Brand cards */
+.cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-bottom:32px; }
+.brand-card { background:#fff; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06); position:relative; }
+.card-rank { position:absolute; top:-1px; right:12px; color:#fff; font-size:12px; font-weight:700; padding:2px 10px; border-radius:0 0 6px 6px; }
+.card-name { font-size:18px; font-weight:700; color:#1a1a2e; margin-bottom:10px; }
+.card-stats { display:flex; flex-direction:column; gap:6px; }
+.stat { display:flex; align-items:baseline; gap:6px; }
+.stat-label { font-size:12px; color:#999; width:42px; }
+.stat-val { font-size:16px; font-weight:600; color:#e74c3c; }
+.stat-pct { font-size:12px; color:#aaa; margin-left:auto; }
+
+/* Tables */
+.section-title { font-size:20px; color:#1a1a2e; margin:32px 0 16px; padding-left:12px; border-left:4px solid #e74c3c; }
+.brand-table-section { background:#fff; border-radius:10px; padding:16px; margin-bottom:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06); overflow-x:auto; }
+.table-title { font-size:16px; color:#1a1a2e; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.rank-badge { color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#f8f9fa; padding:8px 10px; text-align:left; font-weight:600; color:#555; border-bottom:2px solid #e0e0e0; white-space:nowrap; }
+.data-table td { padding:7px 10px; border-bottom:1px solid #f0f0f0; }
+.data-table tr:hover { background:#fafbfc; }
+.total-row { font-weight:700; background:#fff8f0 !important; }
+.total-row td { color:#e74c3c; border-top:2px solid #e0e0e0; }
+
+/* Charts */
+.chart-container { background:#fff; border-radius:10px; padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.chart-title { font-size:16px; font-weight:600; color:#1a1a2e; margin-bottom:12px; }
+.chart-wrapper { position:relative; height:360px; }
+
+/* Insights */
+.insights-box { background:#fff; border-radius:10px; padding:20px 24px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.insights-box h2 { font-size:18px; color:#1a1a2e; margin-bottom:12px; }
+.insights-box ul { list-style:none; }
+.insights-box li { display:flex; align-items:flex-start; gap:10px; margin-bottom:8px; font-size:14px; }
+.insight-num { background:#e74c3c; color:#fff; min-width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
+.insight-text { color:#444; }
+
+/* Summary table */
+.summary-table { width:100%; border-collapse:collapse; font-size:14px; margin-bottom:24px; }
+.summary-table th { background:#1a1a2e; color:#fff; padding:10px 12px; text-align:left; }
+.summary-table td { padding:9px 12px; border-bottom:1px solid #e0e0e0; }
+.summary-table tr:nth-child(even) { background:#f8f9fa; }
+.summary-table tr:hover { background:#fff3cd; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>8月面部精油TOP10品牌情况</h1>
+<p class="subtitle">数据周期：2026/08/01 - 2026/08/16 ｜ 10个品牌 ｜ 合计销售额¥2613.31万 合计销量117,760件</p>
+
+<div class="insights-box">
+<h2>核心洞察</h2>
+<ul><li><span class="insight-num">1</span><span class="insight-text">8月面部精油TOP10品牌16天合计销售额¥2613.31万，合计销量117,760件，整体均价¥221.92。</span></li><li><span class="insight-num">2</span><span class="insight-text">销售额第一：林清轩（¥691.55万），占比26.5%。</span></li><li><span class="insight-num">3</span><span class="insight-text">销量第一：伊帕尔汗（38,920件），占比33.1%。</span></li><li><span class="insight-num">4</span><span class="insight-text">客单价最高：逐本（¥365.35）。</span></li><li><span class="insight-num">5</span><span class="insight-text">客单价最低：伊帕尔汗（¥84.63）。</span></li><li><span class="insight-num">6</span><span class="insight-text">全品牌单日销售额峰值：2026/08/15（¥281.74万）。</span></li><li><span class="insight-num">7</span><span class="insight-text">首末日对比：8/01销售额¥132.73万 → 8/16销售额¥259.24万，变化+95.3%。</span></li></ul>
+</div>
+
+<h2 class="section-title">单品牌汇总</h2>
+<div class="cards-grid">
+    <div class="brand-card" style="border-left:4px solid #e74c3c">
+        <div class="card-rank" style="background:#e74c3c">TOP1</div>
+        <div class="card-name">林清轩</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥691.55万</span><span class="stat-pct">占比26.5%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">27,045件</span><span class="stat-pct">占比23.0%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥255.70</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #e67e22">
+        <div class="card-rank" style="background:#e67e22">TOP2</div>
+        <div class="card-name">伊帕尔汗</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥329.40万</span><span class="stat-pct">占比12.6%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">38,920件</span><span class="stat-pct">占比33.1%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥84.63</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #f39c12">
+        <div class="card-rank" style="background:#f39c12">TOP3</div>
+        <div class="card-name">LAN蘭</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥314.22万</span><span class="stat-pct">占比12.0%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">8,844件</span><span class="stat-pct">占比7.5%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥355.29</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP4</div>
+        <div class="card-name">米加</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥304.50万</span><span class="stat-pct">占比11.7%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">8,434件</span><span class="stat-pct">占比7.2%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥361.03</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP5</div>
+        <div class="card-name">环球配方</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥273.32万</span><span class="stat-pct">占比10.5%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">9,643件</span><span class="stat-pct">占比8.2%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥283.43</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP6</div>
+        <div class="card-name">阿芙</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥248.23万</span><span class="stat-pct">占比9.5%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">7,388件</span><span class="stat-pct">占比6.3%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥335.99</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP7</div>
+        <div class="card-name">逐本</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥137.15万</span><span class="stat-pct">占比5.2%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">3,754件</span><span class="stat-pct">占比3.2%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥365.35</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP8</div>
+        <div class="card-name">谷雨</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥122.67万</span><span class="stat-pct">占比4.7%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">4,768件</span><span class="stat-pct">占比4.0%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥257.28</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP9</div>
+        <div class="card-name">雏菊的天空</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥98.78万</span><span class="stat-pct">占比3.8%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">5,295件</span><span class="stat-pct">占比4.5%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥186.55</span></div>
+        </div>
+    </div>
+    <div class="brand-card" style="border-left:4px solid #95a5a6">
+        <div class="card-rank" style="background:#95a5a6">TOP10</div>
+        <div class="card-name">馥郁满铺</div>
+        <div class="card-stats">
+            <div class="stat"><span class="stat-label">销售额</span><span class="stat-val">¥93.51万</span><span class="stat-pct">占比3.6%</span></div>
+            <div class="stat"><span class="stat-label">销量</span><span class="stat-val">3,669件</span><span class="stat-pct">占比3.1%</span></div>
+            <div class="stat"><span class="stat-label">均价</span><span class="stat-val">¥254.86</span></div>
+        </div>
+    </div></div>
+
+<table class="summary-table">
+<thead><tr><th>排名</th><th>品牌</th><th>销售额</th><th>销售额占比</th><th>销量</th><th>销量占比</th><th>销售均价</th></tr></thead>
+<tbody><tr><td>TOP1</td><td>林清轩</td><td>¥6,915,466</td><td>26.5%</td><td>27,045</td><td>23.0%</td><td>¥255.70</td></tr><tr><td>TOP2</td><td>伊帕尔汗</td><td>¥3,293,981</td><td>12.6%</td><td>38,920</td><td>33.1%</td><td>¥84.63</td></tr><tr><td>TOP3</td><td>LAN蘭</td><td>¥3,142,163</td><td>12.0%</td><td>8,844</td><td>7.5%</td><td>¥355.29</td></tr><tr><td>TOP4</td><td>米加</td><td>¥3,044,961</td><td>11.7%</td><td>8,434</td><td>7.2%</td><td>¥361.03</td></tr><tr><td>TOP5</td><td>环球配方</td><td>¥2,733,156</td><td>10.5%</td><td>9,643</td><td>8.2%</td><td>¥283.43</td></tr><tr><td>TOP6</td><td>阿芙</td><td>¥2,482,310</td><td>9.5%</td><td>7,388</td><td>6.3%</td><td>¥335.99</td></tr><tr><td>TOP7</td><td>逐本</td><td>¥1,371,530</td><td>5.2%</td><td>3,754</td><td>3.2%</td><td>¥365.35</td></tr><tr><td>TOP8</td><td>谷雨</td><td>¥1,226,693</td><td>4.7%</td><td>4,768</td><td>4.0%</td><td>¥257.28</td></tr><tr><td>TOP9</td><td>雏菊的天空</td><td>¥987,756</td><td>3.8%</td><td>5,295</td><td>4.5%</td><td>¥186.55</td></tr><tr><td>TOP10</td><td>馥郁满铺</td><td>¥935,085</td><td>3.6%</td><td>3,669</td><td>3.1%</td><td>¥254.86</td></tr><tr class="total-row" style="background:#fff8f0"><td>—</td><td>合计</td><td>¥26,133,101</td><td>100.0%</td><td>117,760</td><td>100.0%</td><td>¥221.92</td></tr>
+</tbody></table>
+
+<h2 class="section-title">全品牌每日汇总</h2>
+<div class="brand-table-section">
+<table class="data-table">
+<thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+<tbody><tr><td>2026/08/01</td><td>7,113</td><td>—</td><td>¥1,327,283</td><td>—</td><td>¥186.60</td></tr><tr><td>2026/08/02</td><td>6,267</td><td><span style="color:#27ae60">-11.9%</span></td><td>¥1,229,400</td><td><span style="color:#27ae60">-7.4%</span></td><td>¥196.17</td></tr><tr><td>2026/08/03</td><td>7,149</td><td><span style="color:#e74c3c">+14.1%</span></td><td>¥1,134,995</td><td><span style="color:#27ae60">-7.7%</span></td><td>¥158.76</td></tr><tr><td>2026/08/04</td><td>6,638</td><td><span style="color:#27ae60">-7.1%</span></td><td>¥1,082,218</td><td><span style="color:#27ae60">-4.6%</span></td><td>¥163.03</td></tr><tr><td>2026/08/05</td><td>5,043</td><td><span style="color:#27ae60">-24.0%</span></td><td>¥903,410</td><td><span style="color:#27ae60">-16.5%</span></td><td>¥179.14</td></tr><tr><td>2026/08/06</td><td>6,125</td><td><span style="color:#e74c3c">+21.5%</span></td><td>¥1,089,101</td><td><span style="color:#e74c3c">+20.6%</span></td><td>¥177.81</td></tr><tr><td>2026/08/07</td><td>7,789</td><td><span style="color:#e74c3c">+27.2%</span></td><td>¥1,602,047</td><td><span style="color:#e74c3c">+47.1%</span></td><td>¥205.68</td></tr><tr><td>2026/08/08</td><td>9,218</td><td><span style="color:#e74c3c">+18.3%</span></td><td>¥2,369,600</td><td><span style="color:#e74c3c">+47.9%</span></td><td>¥257.06</td></tr><tr><td>2026/08/09</td><td>8,215</td><td><span style="color:#27ae60">-10.9%</span></td><td>¥1,800,162</td><td><span style="color:#27ae60">-24.0%</span></td><td>¥219.13</td></tr><tr><td>2026/08/10</td><td>7,136</td><td><span style="color:#27ae60">-13.1%</span></td><td>¥1,517,222</td><td><span style="color:#27ae60">-15.7%</span></td><td>¥212.62</td></tr><tr><td>2026/08/11</td><td>8,233</td><td><span style="color:#e74c3c">+15.4%</span></td><td>¥1,819,257</td><td><span style="color:#e74c3c">+19.9%</span></td><td>¥220.97</td></tr><tr><td>2026/08/12</td><td>8,017</td><td><span style="color:#27ae60">-2.6%</span></td><td>¥1,788,388</td><td><span style="color:#27ae60">-1.7%</span></td><td>¥223.07</td></tr><tr><td>2026/08/13</td><td>7,303</td><td><span style="color:#27ae60">-8.9%</span></td><td>¥1,680,827</td><td><span style="color:#27ae60">-6.0%</span></td><td>¥230.16</td></tr><tr><td>2026/08/14</td><td>6,231</td><td><span style="color:#27ae60">-14.7%</span></td><td>¥1,379,438</td><td><span style="color:#27ae60">-17.9%</span></td><td>¥221.38</td></tr><tr><td>2026/08/15</td><td>9,393</td><td><span style="color:#e74c3c">+50.7%</span></td><td>¥2,817,354</td><td><span style="color:#e74c3c">+104.2%</span></td><td>¥299.94</td></tr><tr><td>2026/08/16</td><td>7,890</td><td><span style="color:#27ae60">-16.0%</span></td><td>¥2,592,399</td><td><span style="color:#27ae60">-8.0%</span></td><td>¥328.57</td></tr><tr class='total-row'><td>总计</td><td>117,760</td><td>—</td><td>¥26,133,101</td><td>—</td><td>¥221.92</td></tr></tbody>
+</table>
+</div>
+
+<h2 class="section-title">单品牌每日销售明细（含环比）</h2>
+
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#e74c3c">TOP1</span> 林清轩 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>1,706</td><td>—</td><td>¥324,735</td><td>—</td><td>¥190.35</td></tr><tr><td>2026/08/02</td><td>1,390</td><td><span style="color:#27ae60">-18.5%</span></td><td>¥340,654</td><td><span style="color:#e74c3c">+4.9%</span></td><td>¥245.07</td></tr><tr><td>2026/08/03</td><td>1,630</td><td><span style="color:#e74c3c">+17.3%</span></td><td>¥284,113</td><td><span style="color:#27ae60">-16.6%</span></td><td>¥174.30</td></tr><tr><td>2026/08/04</td><td>1,073</td><td><span style="color:#27ae60">-34.2%</span></td><td>¥189,569</td><td><span style="color:#27ae60">-33.3%</span></td><td>¥176.67</td></tr><tr><td>2026/08/05</td><td>1,065</td><td><span style="color:#27ae60">-0.7%</span></td><td>¥194,249</td><td><span style="color:#e74c3c">+2.5%</span></td><td>¥182.39</td></tr><tr><td>2026/08/06</td><td>1,205</td><td><span style="color:#e74c3c">+13.1%</span></td><td>¥259,015</td><td><span style="color:#e74c3c">+33.3%</span></td><td>¥214.95</td></tr><tr><td>2026/08/07</td><td>2,343</td><td><span style="color:#e74c3c">+94.4%</span></td><td>¥628,839</td><td><span style="color:#e74c3c">+142.8%</span></td><td>¥268.39</td></tr><tr><td>2026/08/08</td><td>2,204</td><td><span style="color:#27ae60">-5.9%</span></td><td>¥674,272</td><td><span style="color:#e74c3c">+7.2%</span></td><td>¥305.93</td></tr><tr><td>2026/08/09</td><td>2,373</td><td><span style="color:#e74c3c">+7.7%</span></td><td>¥640,816</td><td><span style="color:#27ae60">-5.0%</span></td><td>¥270.04</td></tr><tr><td>2026/08/10</td><td>1,757</td><td><span style="color:#27ae60">-26.0%</span></td><td>¥525,000</td><td><span style="color:#27ae60">-18.1%</span></td><td>¥298.80</td></tr><tr><td>2026/08/11</td><td>1,548</td><td><span style="color:#27ae60">-11.9%</span></td><td>¥404,813</td><td><span style="color:#27ae60">-22.9%</span></td><td>¥261.51</td></tr><tr><td>2026/08/12</td><td>1,666</td><td><span style="color:#e74c3c">+7.6%</span></td><td>¥390,347</td><td><span style="color:#27ae60">-3.6%</span></td><td>¥234.30</td></tr><tr><td>2026/08/13</td><td>1,747</td><td><span style="color:#e74c3c">+4.9%</span></td><td>¥443,057</td><td><span style="color:#e74c3c">+13.5%</span></td><td>¥253.61</td></tr><tr><td>2026/08/14</td><td>2,031</td><td><span style="color:#e74c3c">+16.3%</span></td><td>¥457,862</td><td><span style="color:#e74c3c">+3.3%</span></td><td>¥225.44</td></tr><tr><td>2026/08/15</td><td>1,718</td><td><span style="color:#27ae60">-15.4%</span></td><td>¥606,543</td><td><span style="color:#e74c3c">+32.5%</span></td><td>¥353.05</td></tr><tr><td>2026/08/16</td><td>1,589</td><td><span style="color:#27ae60">-7.5%</span></td><td>¥551,582</td><td><span style="color:#27ae60">-9.1%</span></td><td>¥347.13</td></tr><tr class='total-row'><td>总计</td><td>27,045</td><td>—</td><td>¥6,915,466</td><td>—</td><td>¥255.70</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#e67e22">TOP2</span> 伊帕尔汗 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>2,579</td><td>—</td><td>¥204,198</td><td>—</td><td>¥79.18</td></tr><tr><td>2026/08/02</td><td>2,746</td><td><span style="color:#e74c3c">+6.5%</span></td><td>¥209,128</td><td><span style="color:#e74c3c">+2.4%</span></td><td>¥76.16</td></tr><tr><td>2026/08/03</td><td>3,075</td><td><span style="color:#e74c3c">+12.0%</span></td><td>¥237,810</td><td><span style="color:#e74c3c">+13.7%</span></td><td>¥77.34</td></tr><tr><td>2026/08/04</td><td>3,313</td><td><span style="color:#e74c3c">+7.7%</span></td><td>¥259,360</td><td><span style="color:#e74c3c">+9.1%</span></td><td>¥78.29</td></tr><tr><td>2026/08/05</td><td>1,960</td><td><span style="color:#27ae60">-40.8%</span></td><td>¥149,628</td><td><span style="color:#27ae60">-42.3%</span></td><td>¥76.34</td></tr><tr><td>2026/08/06</td><td>2,426</td><td><span style="color:#e74c3c">+23.8%</span></td><td>¥185,552</td><td><span style="color:#e74c3c">+24.0%</span></td><td>¥76.48</td></tr><tr><td>2026/08/07</td><td>2,478</td><td><span style="color:#e74c3c">+2.1%</span></td><td>¥193,561</td><td><span style="color:#e74c3c">+4.3%</span></td><td>¥78.11</td></tr><tr><td>2026/08/08</td><td>2,072</td><td><span style="color:#27ae60">-16.4%</span></td><td>¥158,043</td><td><span style="color:#27ae60">-18.3%</span></td><td>¥76.28</td></tr><tr><td>2026/08/09</td><td>2,557</td><td><span style="color:#e74c3c">+23.4%</span></td><td>¥196,750</td><td><span style="color:#e74c3c">+24.5%</span></td><td>¥76.95</td></tr><tr><td>2026/08/10</td><td>2,496</td><td><span style="color:#27ae60">-2.4%</span></td><td>¥191,777</td><td><span style="color:#27ae60">-2.5%</span></td><td>¥76.83</td></tr><tr><td>2026/08/11</td><td>2,817</td><td><span style="color:#e74c3c">+12.9%</span></td><td>¥226,623</td><td><span style="color:#e74c3c">+18.2%</span></td><td>¥80.45</td></tr><tr><td>2026/08/12</td><td>2,440</td><td><span style="color:#27ae60">-13.4%</span></td><td>¥191,157</td><td><span style="color:#27ae60">-15.6%</span></td><td>¥78.34</td></tr><tr><td>2026/08/13</td><td>2,170</td><td><span style="color:#27ae60">-11.1%</span></td><td>¥172,239</td><td><span style="color:#27ae60">-9.9%</span></td><td>¥79.37</td></tr><tr><td>2026/08/14</td><td>1,599</td><td><span style="color:#27ae60">-26.3%</span></td><td>¥132,549</td><td><span style="color:#27ae60">-23.0%</span></td><td>¥82.89</td></tr><tr><td>2026/08/15</td><td>2,786</td><td><span style="color:#e74c3c">+74.2%</span></td><td>¥388,520</td><td><span style="color:#e74c3c">+193.1%</span></td><td>¥139.45</td></tr><tr><td>2026/08/16</td><td>1,406</td><td><span style="color:#27ae60">-49.5%</span></td><td>¥197,086</td><td><span style="color:#27ae60">-49.3%</span></td><td>¥140.17</td></tr><tr class='total-row'><td>总计</td><td>38,920</td><td>—</td><td>¥3,293,981</td><td>—</td><td>¥84.63</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#f39c12">TOP3</span> LAN蘭 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>587</td><td>—</td><td>¥194,001</td><td>—</td><td>¥330.50</td></tr><tr><td>2026/08/02</td><td>529</td><td><span style="color:#27ae60">-9.9%</span></td><td>¥180,013</td><td><span style="color:#27ae60">-7.2%</span></td><td>¥340.29</td></tr><tr><td>2026/08/03</td><td>580</td><td><span style="color:#e74c3c">+9.6%</span></td><td>¥189,282</td><td><span style="color:#e74c3c">+5.1%</span></td><td>¥326.35</td></tr><tr><td>2026/08/04</td><td>703</td><td><span style="color:#e74c3c">+21.2%</span></td><td>¥225,867</td><td><span style="color:#e74c3c">+19.3%</span></td><td>¥321.29</td></tr><tr><td>2026/08/05</td><td>591</td><td><span style="color:#27ae60">-15.9%</span></td><td>¥184,100</td><td><span style="color:#27ae60">-18.5%</span></td><td>¥311.51</td></tr><tr><td>2026/08/06</td><td>585</td><td><span style="color:#27ae60">-1.0%</span></td><td>¥186,495</td><td><span style="color:#e74c3c">+1.3%</span></td><td>¥318.79</td></tr><tr><td>2026/08/07</td><td>312</td><td><span style="color:#27ae60">-46.7%</span></td><td>¥87,799</td><td><span style="color:#27ae60">-52.9%</span></td><td>¥281.41</td></tr><tr><td>2026/08/08</td><td>294</td><td><span style="color:#27ae60">-5.8%</span></td><td>¥88,054</td><td><span style="color:#e74c3c">+0.3%</span></td><td>¥299.50</td></tr><tr><td>2026/08/09</td><td>289</td><td><span style="color:#27ae60">-1.7%</span></td><td>¥87,191</td><td><span style="color:#27ae60">-1.0%</span></td><td>¥301.70</td></tr><tr><td>2026/08/10</td><td>319</td><td><span style="color:#e74c3c">+10.4%</span></td><td>¥95,331</td><td><span style="color:#e74c3c">+9.3%</span></td><td>¥298.84</td></tr><tr><td>2026/08/11</td><td>465</td><td><span style="color:#e74c3c">+45.8%</span></td><td>¥127,378</td><td><span style="color:#e74c3c">+33.6%</span></td><td>¥273.93</td></tr><tr><td>2026/08/12</td><td>585</td><td><span style="color:#e74c3c">+25.8%</span></td><td>¥192,850</td><td><span style="color:#e74c3c">+51.4%</span></td><td>¥329.66</td></tr><tr><td>2026/08/13</td><td>540</td><td><span style="color:#27ae60">-7.7%</span></td><td>¥186,912</td><td><span style="color:#27ae60">-3.1%</span></td><td>¥346.13</td></tr><tr><td>2026/08/14</td><td>467</td><td><span style="color:#27ae60">-13.5%</span></td><td>¥169,084</td><td><span style="color:#27ae60">-9.5%</span></td><td>¥362.06</td></tr><tr><td>2026/08/15</td><td>852</td><td><span style="color:#e74c3c">+82.4%</span></td><td>¥390,724</td><td><span style="color:#e74c3c">+131.1%</span></td><td>¥458.60</td></tr><tr><td>2026/08/16</td><td>1,146</td><td><span style="color:#e74c3c">+34.5%</span></td><td>¥557,082</td><td><span style="color:#e74c3c">+42.6%</span></td><td>¥486.11</td></tr><tr class='total-row'><td>总计</td><td>8,844</td><td>—</td><td>¥3,142,163</td><td>—</td><td>¥355.29</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP4</span> 米加 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>233</td><td>—</td><td>¥79,565</td><td>—</td><td>¥341.48</td></tr><tr><td>2026/08/02</td><td>367</td><td><span style="color:#e74c3c">+57.5%</span></td><td>¥125,223</td><td><span style="color:#e74c3c">+57.4%</span></td><td>¥341.21</td></tr><tr><td>2026/08/03</td><td>189</td><td><span style="color:#27ae60">-48.5%</span></td><td>¥65,478</td><td><span style="color:#27ae60">-47.7%</span></td><td>¥346.44</td></tr><tr><td>2026/08/04</td><td>262</td><td><span style="color:#e74c3c">+38.6%</span></td><td>¥91,507</td><td><span style="color:#e74c3c">+39.8%</span></td><td>¥349.26</td></tr><tr><td>2026/08/05</td><td>221</td><td><span style="color:#27ae60">-15.6%</span></td><td>¥76,858</td><td><span style="color:#27ae60">-16.0%</span></td><td>¥347.77</td></tr><tr><td>2026/08/06</td><td>181</td><td><span style="color:#27ae60">-18.1%</span></td><td>¥61,160</td><td><span style="color:#27ae60">-20.4%</span></td><td>¥337.90</td></tr><tr><td>2026/08/07</td><td>154</td><td><span style="color:#27ae60">-14.9%</span></td><td>¥51,691</td><td><span style="color:#27ae60">-15.5%</span></td><td>¥335.66</td></tr><tr><td>2026/08/08</td><td>2,688</td><td><span style="color:#e74c3c">+1645.5%</span></td><td>¥951,449</td><td><span style="color:#e74c3c">+1740.6%</span></td><td>¥353.96</td></tr><tr><td>2026/08/09</td><td>885</td><td><span style="color:#27ae60">-67.1%</span></td><td>¥316,130</td><td><span style="color:#27ae60">-66.8%</span></td><td>¥357.21</td></tr><tr><td>2026/08/10</td><td>594</td><td><span style="color:#27ae60">-32.9%</span></td><td>¥213,264</td><td><span style="color:#27ae60">-32.5%</span></td><td>¥359.03</td></tr><tr><td>2026/08/11</td><td>328</td><td><span style="color:#27ae60">-44.8%</span></td><td>¥117,795</td><td><span style="color:#27ae60">-44.8%</span></td><td>¥359.13</td></tr><tr><td>2026/08/12</td><td>234</td><td><span style="color:#27ae60">-28.7%</span></td><td>¥83,372</td><td><span style="color:#27ae60">-29.2%</span></td><td>¥356.29</td></tr><tr><td>2026/08/13</td><td>428</td><td><span style="color:#e74c3c">+82.9%</span></td><td>¥153,940</td><td><span style="color:#e74c3c">+84.6%</span></td><td>¥359.67</td></tr><tr><td>2026/08/14</td><td>486</td><td><span style="color:#e74c3c">+13.6%</span></td><td>¥176,799</td><td><span style="color:#e74c3c">+14.8%</span></td><td>¥363.78</td></tr><tr><td>2026/08/15</td><td>482</td><td><span style="color:#27ae60">-0.8%</span></td><td>¥193,372</td><td><span style="color:#e74c3c">+9.4%</span></td><td>¥401.19</td></tr><tr><td>2026/08/16</td><td>702</td><td><span style="color:#e74c3c">+45.6%</span></td><td>¥287,358</td><td><span style="color:#e74c3c">+48.6%</span></td><td>¥409.34</td></tr><tr class='total-row'><td>总计</td><td>8,434</td><td>—</td><td>¥3,044,961</td><td>—</td><td>¥361.03</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP5</span> 环球配方 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>382</td><td>—</td><td>¥80,262</td><td>—</td><td>¥210.11</td></tr><tr><td>2026/08/02</td><td>168</td><td><span style="color:#27ae60">-56.0%</span></td><td>¥51,975</td><td><span style="color:#27ae60">-35.2%</span></td><td>¥309.38</td></tr><tr><td>2026/08/03</td><td>701</td><td><span style="color:#e74c3c">+317.3%</span></td><td>¥134,483</td><td><span style="color:#e74c3c">+158.7%</span></td><td>¥191.84</td></tr><tr><td>2026/08/04</td><td>408</td><td><span style="color:#27ae60">-41.8%</span></td><td>¥116,178</td><td><span style="color:#27ae60">-13.6%</span></td><td>¥284.75</td></tr><tr><td>2026/08/05</td><td>297</td><td><span style="color:#27ae60">-27.2%</span></td><td>¥76,856</td><td><span style="color:#27ae60">-33.8%</span></td><td>¥258.77</td></tr><tr><td>2026/08/06</td><td>869</td><td><span style="color:#e74c3c">+192.6%</span></td><td>¥196,201</td><td><span style="color:#e74c3c">+155.3%</span></td><td>¥225.78</td></tr><tr><td>2026/08/07</td><td>838</td><td><span style="color:#27ae60">-3.6%</span></td><td>¥197,003</td><td><span style="color:#e74c3c">+0.4%</span></td><td>¥235.09</td></tr><tr><td>2026/08/08</td><td>489</td><td><span style="color:#27ae60">-41.6%</span></td><td>¥128,040</td><td><span style="color:#27ae60">-35.0%</span></td><td>¥261.84</td></tr><tr><td>2026/08/09</td><td>474</td><td><span style="color:#27ae60">-3.1%</span></td><td>¥122,216</td><td><span style="color:#27ae60">-4.5%</span></td><td>¥257.84</td></tr><tr><td>2026/08/10</td><td>478</td><td><span style="color:#e74c3c">+0.8%</span></td><td>¥79,789</td><td><span style="color:#27ae60">-34.7%</span></td><td>¥166.92</td></tr><tr><td>2026/08/11</td><td>718</td><td><span style="color:#e74c3c">+50.2%</span></td><td>¥222,537</td><td><span style="color:#e74c3c">+178.9%</span></td><td>¥309.94</td></tr><tr><td>2026/08/12</td><td>499</td><td><span style="color:#27ae60">-30.5%</span></td><td>¥158,243</td><td><span style="color:#27ae60">-28.9%</span></td><td>¥317.12</td></tr><tr><td>2026/08/13</td><td>408</td><td><span style="color:#27ae60">-18.2%</span></td><td>¥131,358</td><td><span style="color:#27ae60">-17.0%</span></td><td>¥321.96</td></tr><tr><td>2026/08/14</td><td>382</td><td><span style="color:#27ae60">-6.4%</span></td><td>¥109,628</td><td><span style="color:#27ae60">-16.5%</span></td><td>¥286.98</td></tr><tr><td>2026/08/15</td><td>1,381</td><td><span style="color:#e74c3c">+261.5%</span></td><td>¥505,959</td><td><span style="color:#e74c3c">+361.5%</span></td><td>¥366.37</td></tr><tr><td>2026/08/16</td><td>1,151</td><td><span style="color:#27ae60">-16.7%</span></td><td>¥422,428</td><td><span style="color:#27ae60">-16.5%</span></td><td>¥367.01</td></tr><tr class='total-row'><td>总计</td><td>9,643</td><td>—</td><td>¥2,733,156</td><td>—</td><td>¥283.43</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP6</span> 阿芙 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>287</td><td>—</td><td>¥83,144</td><td>—</td><td>¥289.70</td></tr><tr><td>2026/08/02</td><td>197</td><td><span style="color:#27ae60">-31.4%</span></td><td>¥57,611</td><td><span style="color:#27ae60">-30.7%</span></td><td>¥292.44</td></tr><tr><td>2026/08/03</td><td>172</td><td><span style="color:#27ae60">-12.7%</span></td><td>¥46,121</td><td><span style="color:#27ae60">-19.9%</span></td><td>¥268.15</td></tr><tr><td>2026/08/04</td><td>140</td><td><span style="color:#27ae60">-18.6%</span></td><td>¥42,087</td><td><span style="color:#27ae60">-8.7%</span></td><td>¥300.62</td></tr><tr><td>2026/08/05</td><td>165</td><td><span style="color:#e74c3c">+17.9%</span></td><td>¥46,774</td><td><span style="color:#e74c3c">+11.1%</span></td><td>¥283.48</td></tr><tr><td>2026/08/06</td><td>211</td><td><span style="color:#e74c3c">+27.9%</span></td><td>¥57,557</td><td><span style="color:#e74c3c">+23.1%</span></td><td>¥272.78</td></tr><tr><td>2026/08/07</td><td>260</td><td><span style="color:#e74c3c">+23.2%</span></td><td>¥67,292</td><td><span style="color:#e74c3c">+16.9%</span></td><td>¥258.82</td></tr><tr><td>2026/08/08</td><td>332</td><td><span style="color:#e74c3c">+27.7%</span></td><td>¥86,622</td><td><span style="color:#e74c3c">+28.7%</span></td><td>¥260.91</td></tr><tr><td>2026/08/09</td><td>512</td><td><span style="color:#e74c3c">+54.2%</span></td><td>¥181,684</td><td><span style="color:#e74c3c">+109.7%</span></td><td>¥354.85</td></tr><tr><td>2026/08/10</td><td>448</td><td><span style="color:#27ae60">-12.5%</span></td><td>¥160,314</td><td><span style="color:#27ae60">-11.8%</span></td><td>¥357.84</td></tr><tr><td>2026/08/11</td><td>1,225</td><td><span style="color:#e74c3c">+173.4%</span></td><td>¥443,304</td><td><span style="color:#e74c3c">+176.5%</span></td><td>¥361.88</td></tr><tr><td>2026/08/12</td><td>1,206</td><td><span style="color:#27ae60">-1.6%</span></td><td>¥438,788</td><td><span style="color:#27ae60">-1.0%</span></td><td>¥363.84</td></tr><tr><td>2026/08/13</td><td>913</td><td><span style="color:#27ae60">-24.3%</span></td><td>¥322,840</td><td><span style="color:#27ae60">-26.4%</span></td><td>¥353.60</td></tr><tr><td>2026/08/14</td><td>182</td><td><span style="color:#27ae60">-80.1%</span></td><td>¥50,516</td><td><span style="color:#27ae60">-84.4%</span></td><td>¥277.56</td></tr><tr><td>2026/08/15</td><td>562</td><td><span style="color:#e74c3c">+208.8%</span></td><td>¥198,474</td><td><span style="color:#e74c3c">+292.9%</span></td><td>¥353.16</td></tr><tr><td>2026/08/16</td><td>576</td><td><span style="color:#e74c3c">+2.5%</span></td><td>¥199,182</td><td><span style="color:#e74c3c">+0.4%</span></td><td>¥345.80</td></tr><tr class='total-row'><td>总计</td><td>7,388</td><td>—</td><td>¥2,482,310</td><td>—</td><td>¥335.99</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP7</span> 逐本 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>410</td><td>—</td><td>¥148,409</td><td>—</td><td>¥361.97</td></tr><tr><td>2026/08/02</td><td>409</td><td><span style="color:#27ae60">-0.2%</span></td><td>¥132,857</td><td><span style="color:#27ae60">-10.5%</span></td><td>¥324.83</td></tr><tr><td>2026/08/03</td><td>83</td><td><span style="color:#27ae60">-79.7%</span></td><td>¥25,911</td><td><span style="color:#27ae60">-80.5%</span></td><td>¥312.18</td></tr><tr><td>2026/08/04</td><td>62</td><td><span style="color:#27ae60">-25.3%</span></td><td>¥21,636</td><td><span style="color:#27ae60">-16.5%</span></td><td>¥348.97</td></tr><tr><td>2026/08/05</td><td>108</td><td><span style="color:#e74c3c">+74.2%</span></td><td>¥39,644</td><td><span style="color:#e74c3c">+83.2%</span></td><td>¥367.07</td></tr><tr><td>2026/08/06</td><td>55</td><td><span style="color:#27ae60">-49.1%</span></td><td>¥16,570</td><td><span style="color:#27ae60">-58.2%</span></td><td>¥301.27</td></tr><tr><td>2026/08/07</td><td>611</td><td><span style="color:#e74c3c">+1010.9%</span></td><td>¥197,016</td><td><span style="color:#e74c3c">+1089.0%</span></td><td>¥322.45</td></tr><tr><td>2026/08/08</td><td>306</td><td><span style="color:#27ae60">-49.9%</span></td><td>¥102,541</td><td><span style="color:#27ae60">-48.0%</span></td><td>¥335.10</td></tr><tr><td>2026/08/09</td><td>226</td><td><span style="color:#27ae60">-26.1%</span></td><td>¥72,850</td><td><span style="color:#27ae60">-29.0%</span></td><td>¥322.35</td></tr><tr><td>2026/08/10</td><td>226</td><td><span style="color:#999">0.0%</span></td><td>¥79,827</td><td><span style="color:#e74c3c">+9.6%</span></td><td>¥353.22</td></tr><tr><td>2026/08/11</td><td>252</td><td><span style="color:#e74c3c">+11.5%</span></td><td>¥89,008</td><td><span style="color:#e74c3c">+11.5%</span></td><td>¥353.21</td></tr><tr><td>2026/08/12</td><td>198</td><td><span style="color:#27ae60">-21.4%</span></td><td>¥69,984</td><td><span style="color:#27ae60">-21.4%</span></td><td>¥353.45</td></tr><tr><td>2026/08/13</td><td>204</td><td><span style="color:#e74c3c">+3.0%</span></td><td>¥71,880</td><td><span style="color:#e74c3c">+2.7%</span></td><td>¥352.35</td></tr><tr><td>2026/08/14</td><td>195</td><td><span style="color:#27ae60">-4.4%</span></td><td>¥68,924</td><td><span style="color:#27ae60">-4.1%</span></td><td>¥353.46</td></tr><tr><td>2026/08/15</td><td>296</td><td><span style="color:#e74c3c">+51.8%</span></td><td>¥191,524</td><td><span style="color:#e74c3c">+177.9%</span></td><td>¥647.04</td></tr><tr><td>2026/08/16</td><td>113</td><td><span style="color:#27ae60">-61.8%</span></td><td>¥42,949</td><td><span style="color:#27ae60">-77.6%</span></td><td>¥380.08</td></tr><tr class='total-row'><td>总计</td><td>3,754</td><td>—</td><td>¥1,371,530</td><td>—</td><td>¥365.35</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP8</span> 谷雨 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>301</td><td>—</td><td>¥75,800</td><td>—</td><td>¥251.83</td></tr><tr><td>2026/08/02</td><td>155</td><td><span style="color:#27ae60">-48.5%</span></td><td>¥40,689</td><td><span style="color:#27ae60">-46.3%</span></td><td>¥262.51</td></tr><tr><td>2026/08/03</td><td>158</td><td><span style="color:#e74c3c">+1.9%</span></td><td>¥38,857</td><td><span style="color:#27ae60">-4.5%</span></td><td>¥245.93</td></tr><tr><td>2026/08/04</td><td>146</td><td><span style="color:#27ae60">-7.6%</span></td><td>¥35,370</td><td><span style="color:#27ae60">-9.0%</span></td><td>¥242.26</td></tr><tr><td>2026/08/05</td><td>197</td><td><span style="color:#e74c3c">+34.9%</span></td><td>¥47,860</td><td><span style="color:#e74c3c">+35.3%</span></td><td>¥242.94</td></tr><tr><td>2026/08/06</td><td>181</td><td><span style="color:#27ae60">-8.1%</span></td><td>¥46,183</td><td><span style="color:#27ae60">-3.5%</span></td><td>¥255.15</td></tr><tr><td>2026/08/07</td><td>355</td><td><span style="color:#e74c3c">+96.1%</span></td><td>¥91,872</td><td><span style="color:#e74c3c">+98.9%</span></td><td>¥258.79</td></tr><tr><td>2026/08/08</td><td>321</td><td><span style="color:#27ae60">-9.6%</span></td><td>¥79,618</td><td><span style="color:#27ae60">-13.3%</span></td><td>¥248.03</td></tr><tr><td>2026/08/09</td><td>298</td><td><span style="color:#27ae60">-7.2%</span></td><td>¥80,253</td><td><span style="color:#e74c3c">+0.8%</span></td><td>¥269.31</td></tr><tr><td>2026/08/10</td><td>313</td><td><span style="color:#e74c3c">+5.0%</span></td><td>¥76,771</td><td><span style="color:#27ae60">-4.3%</span></td><td>¥245.27</td></tr><tr><td>2026/08/11</td><td>294</td><td><span style="color:#27ae60">-6.1%</span></td><td>¥75,522</td><td><span style="color:#27ae60">-1.6%</span></td><td>¥256.88</td></tr><tr><td>2026/08/12</td><td>545</td><td><span style="color:#e74c3c">+85.4%</span></td><td>¥141,283</td><td><span style="color:#e74c3c">+87.1%</span></td><td>¥259.23</td></tr><tr><td>2026/08/13</td><td>358</td><td><span style="color:#27ae60">-34.3%</span></td><td>¥88,835</td><td><span style="color:#27ae60">-37.1%</span></td><td>¥248.14</td></tr><tr><td>2026/08/14</td><td>365</td><td><span style="color:#e74c3c">+2.0%</span></td><td>¥94,950</td><td><span style="color:#e74c3c">+6.9%</span></td><td>¥260.14</td></tr><tr><td>2026/08/15</td><td>419</td><td><span style="color:#e74c3c">+14.8%</span></td><td>¥113,759</td><td><span style="color:#e74c3c">+19.8%</span></td><td>¥271.50</td></tr><tr><td>2026/08/16</td><td>362</td><td><span style="color:#27ae60">-13.6%</span></td><td>¥99,071</td><td><span style="color:#27ae60">-12.9%</span></td><td>¥273.68</td></tr><tr class='total-row'><td>总计</td><td>4,768</td><td>—</td><td>¥1,226,693</td><td>—</td><td>¥257.28</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP9</span> 雏菊的天空 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>410</td><td>—</td><td>¥77,772</td><td>—</td><td>¥189.69</td></tr><tr><td>2026/08/02</td><td>119</td><td><span style="color:#27ae60">-71.0%</span></td><td>¥43,964</td><td><span style="color:#27ae60">-43.5%</span></td><td>¥369.45</td></tr><tr><td>2026/08/03</td><td>394</td><td><span style="color:#e74c3c">+231.1%</span></td><td>¥68,131</td><td><span style="color:#e74c3c">+55.0%</span></td><td>¥172.92</td></tr><tr><td>2026/08/04</td><td>366</td><td><span style="color:#27ae60">-7.1%</span></td><td>¥56,132</td><td><span style="color:#27ae60">-17.6%</span></td><td>¥153.37</td></tr><tr><td>2026/08/05</td><td>274</td><td><span style="color:#27ae60">-25.1%</span></td><td>¥43,599</td><td><span style="color:#27ae60">-22.3%</span></td><td>¥159.12</td></tr><tr><td>2026/08/06</td><td>247</td><td><span style="color:#27ae60">-9.9%</span></td><td>¥39,951</td><td><span style="color:#27ae60">-8.4%</span></td><td>¥161.74</td></tr><tr><td>2026/08/07</td><td>263</td><td><span style="color:#e74c3c">+6.5%</span></td><td>¥41,158</td><td><span style="color:#e74c3c">+3.0%</span></td><td>¥156.49</td></tr><tr><td>2026/08/08</td><td>374</td><td><span style="color:#e74c3c">+42.2%</span></td><td>¥62,539</td><td><span style="color:#e74c3c">+51.9%</span></td><td>¥167.22</td></tr><tr><td>2026/08/09</td><td>459</td><td><span style="color:#e74c3c">+22.7%</span></td><td>¥63,179</td><td><span style="color:#e74c3c">+1.0%</span></td><td>¥137.64</td></tr><tr><td>2026/08/10</td><td>338</td><td><span style="color:#27ae60">-26.4%</span></td><td>¥52,020</td><td><span style="color:#27ae60">-17.7%</span></td><td>¥153.91</td></tr><tr><td>2026/08/11</td><td>360</td><td><span style="color:#e74c3c">+6.5%</span></td><td>¥54,120</td><td><span style="color:#e74c3c">+4.0%</span></td><td>¥150.33</td></tr><tr><td>2026/08/12</td><td>386</td><td><span style="color:#e74c3c">+7.2%</span></td><td>¥57,370</td><td><span style="color:#e74c3c">+6.0%</span></td><td>¥148.63</td></tr><tr><td>2026/08/13</td><td>295</td><td><span style="color:#27ae60">-23.6%</span></td><td>¥57,402</td><td><span style="color:#e74c3c">+0.1%</span></td><td>¥194.58</td></tr><tr><td>2026/08/14</td><td>302</td><td><span style="color:#e74c3c">+2.4%</span></td><td>¥63,694</td><td><span style="color:#e74c3c">+11.0%</span></td><td>¥210.91</td></tr><tr><td>2026/08/15</td><td>420</td><td><span style="color:#e74c3c">+39.1%</span></td><td>¥109,985</td><td><span style="color:#e74c3c">+72.7%</span></td><td>¥261.87</td></tr><tr><td>2026/08/16</td><td>288</td><td><span style="color:#27ae60">-31.4%</span></td><td>¥96,740</td><td><span style="color:#27ae60">-12.0%</span></td><td>¥335.90</td></tr><tr class='total-row'><td>总计</td><td>5,295</td><td>—</td><td>¥987,756</td><td>—</td><td>¥186.55</td></tr></tbody>
+        </table>
+    </div>
+    <div class="brand-table-section">
+        <h3 class="table-title"><span class="rank-badge" style="background:#95a5a6">TOP10</span> 馥郁满铺 每日销售明细</h3>
+        <table class="data-table">
+            <thead><tr><th>日期</th><th>销量</th><th>销量环比</th><th>销售额</th><th>销售额环比</th><th>销售均价</th></tr></thead>
+            <tbody><tr><td>2026/08/01</td><td>218</td><td>—</td><td>¥59,397</td><td>—</td><td>¥272.46</td></tr><tr><td>2026/08/02</td><td>187</td><td><span style="color:#27ae60">-14.2%</span></td><td>¥47,286</td><td><span style="color:#27ae60">-20.4%</span></td><td>¥252.87</td></tr><tr><td>2026/08/03</td><td>167</td><td><span style="color:#27ae60">-10.7%</span></td><td>¥44,809</td><td><span style="color:#27ae60">-5.2%</span></td><td>¥268.32</td></tr><tr><td>2026/08/04</td><td>165</td><td><span style="color:#27ae60">-1.2%</span></td><td>¥44,512</td><td><span style="color:#27ae60">-0.7%</span></td><td>¥269.77</td></tr><tr><td>2026/08/05</td><td>165</td><td><span style="color:#999">0.0%</span></td><td>¥43,842</td><td><span style="color:#27ae60">-1.5%</span></td><td>¥265.71</td></tr><tr><td>2026/08/06</td><td>165</td><td><span style="color:#999">0.0%</span></td><td>¥40,417</td><td><span style="color:#27ae60">-7.8%</span></td><td>¥244.95</td></tr><tr><td>2026/08/07</td><td>175</td><td><span style="color:#e74c3c">+6.1%</span></td><td>¥45,816</td><td><span style="color:#e74c3c">+13.4%</span></td><td>¥261.81</td></tr><tr><td>2026/08/08</td><td>138</td><td><span style="color:#27ae60">-21.1%</span></td><td>¥38,422</td><td><span style="color:#27ae60">-16.1%</span></td><td>¥278.42</td></tr><tr><td>2026/08/09</td><td>142</td><td><span style="color:#e74c3c">+2.9%</span></td><td>¥39,093</td><td><span style="color:#e74c3c">+1.7%</span></td><td>¥275.30</td></tr><tr><td>2026/08/10</td><td>167</td><td><span style="color:#e74c3c">+17.6%</span></td><td>¥43,129</td><td><span style="color:#e74c3c">+10.3%</span></td><td>¥258.26</td></tr><tr><td>2026/08/11</td><td>226</td><td><span style="color:#e74c3c">+35.3%</span></td><td>¥58,157</td><td><span style="color:#e74c3c">+34.8%</span></td><td>¥257.33</td></tr><tr><td>2026/08/12</td><td>258</td><td><span style="color:#e74c3c">+14.2%</span></td><td>¥64,994</td><td><span style="color:#e74c3c">+11.8%</span></td><td>¥251.91</td></tr><tr><td>2026/08/13</td><td>240</td><td><span style="color:#27ae60">-7.0%</span></td><td>¥52,364</td><td><span style="color:#27ae60">-19.4%</span></td><td>¥218.18</td></tr><tr><td>2026/08/14</td><td>222</td><td><span style="color:#27ae60">-7.5%</span></td><td>¥55,432</td><td><span style="color:#e74c3c">+5.9%</span></td><td>¥249.69</td></tr><tr><td>2026/08/15</td><td>477</td><td><span style="color:#e74c3c">+114.9%</span></td><td>¥118,494</td><td><span style="color:#e74c3c">+113.8%</span></td><td>¥248.42</td></tr><tr><td>2026/08/16</td><td>557</td><td><span style="color:#e74c3c">+16.8%</span></td><td>¥138,921</td><td><span style="color:#e74c3c">+17.2%</span></td><td>¥249.41</td></tr><tr class='total-row'><td>总计</td><td>3,669</td><td>—</td><td>¥935,085</td><td>—</td><td>¥254.86</td></tr></tbody>
+        </table>
+    </div>
+
+<h2 class="section-title">趋势图表</h2>
+
+<div class="chart-container"><div class="chart-title">各品牌每日销售额趋势</div><div class="chart-wrapper"><canvas id="chart1"></canvas></div></div>
+<div class="chart-container"><div class="chart-title">各品牌每日销量趋势</div><div class="chart-wrapper"><canvas id="chart2"></canvas></div></div>
+<div class="chart-container"><div class="chart-title">全品牌每日销售额</div><div class="chart-wrapper"><canvas id="chart3"></canvas></div></div>
+<div class="chart-container"><div class="chart-title">各品牌销售额占比</div><div class="chart-wrapper"><canvas id="chart4"></canvas></div></div>
+<div class="chart-container"><div class="chart-title">各品牌销量占比</div><div class="chart-wrapper"><canvas id="chart5"></canvas></div></div>
+
+</div>
+
+<script>
+const chartData = {"dates": ["2026/08/01", "2026/08/02", "2026/08/03", "2026/08/04", "2026/08/05", "2026/08/06", "2026/08/07", "2026/08/08", "2026/08/09", "2026/08/10", "2026/08/11", "2026/08/12", "2026/08/13", "2026/08/14", "2026/08/15", "2026/08/16"], "brands": [{"name": "林清轩", "sales": [324735, 340654, 284113, 189569, 194249, 259015, 628839, 674272, 640816, 525000, 404813, 390347, 443057, 457862, 606543, 551582], "qty": [1706, 1390, 1630, 1073, 1065, 1205, 2343, 2204, 2373, 1757, 1548, 1666, 1747, 2031, 1718, 1589], "prices": [190.35, 245.07, 174.3, 176.67, 182.39, 214.95, 268.39, 305.93, 270.04, 298.8, 261.51, 234.3, 253.61, 225.44, 353.05, 347.13]}, {"name": "伊帕尔汗", "sales": [204198, 209128, 237810, 259360, 149628, 185552, 193561, 158043, 196750, 191777, 226623, 191157, 172239, 132549, 388520, 197086], "qty": [2579, 2746, 3075, 3313, 1960, 2426, 2478, 2072, 2557, 2496, 2817, 2440, 2170, 1599, 2786, 1406], "prices": [79.18, 76.16, 77.34, 78.29, 76.34, 76.48, 78.11, 76.28, 76.95, 76.83, 80.45, 78.34, 79.37, 82.89, 139.45, 140.17]}, {"name": "LAN蘭", "sales": [194001, 180013, 189282, 225867, 184100, 186495, 87799, 88054, 87191, 95331, 127378, 192850, 186912, 169084, 390724, 557082], "qty": [587, 529, 580, 703, 591, 585, 312, 294, 289, 319, 465, 585, 540, 467, 852, 1146], "prices": [330.5, 340.29, 326.35, 321.29, 311.51, 318.79, 281.41, 299.5, 301.7, 298.84, 273.93, 329.66, 346.13, 362.06, 458.6, 486.11]}, {"name": "米加", "sales": [79565, 125223, 65478, 91507, 76858, 61160, 51691, 951449, 316130, 213264, 117795, 83372, 153940, 176799, 193372, 287358], "qty": [233, 367, 189, 262, 221, 181, 154, 2688, 885, 594, 328, 234, 428, 486, 482, 702], "prices": [341.48, 341.21, 346.44, 349.26, 347.77, 337.9, 335.66, 353.96, 357.21, 359.03, 359.13, 356.29, 359.67, 363.78, 401.19, 409.34]}, {"name": "环球配方", "sales": [80262, 51975, 134483, 116178, 76856, 196201, 197003, 128040, 122216, 79789, 222537, 158243, 131358, 109628, 505959, 422428], "qty": [382, 168, 701, 408, 297, 869, 838, 489, 474, 478, 718, 499, 408, 382, 1381, 1151], "prices": [210.11, 309.38, 191.84, 284.75, 258.77, 225.78, 235.09, 261.84, 257.84, 166.92, 309.94, 317.12, 321.96, 286.98, 366.37, 367.01]}, {"name": "阿芙", "sales": [83144, 57611, 46121, 42087, 46774, 57557, 67292, 86622, 181684, 160314, 443304, 438788, 322840, 50516, 198474, 199182], "qty": [287, 197, 172, 140, 165, 211, 260, 332, 512, 448, 1225, 1206, 913, 182, 562, 576], "prices": [289.7, 292.44, 268.15, 300.62, 283.48, 272.78, 258.82, 260.91, 354.85, 357.84, 361.88, 363.84, 353.6, 277.56, 353.16, 345.8]}, {"name": "逐本", "sales": [148409, 132857, 25911, 21636, 39644, 16570, 197016, 102541, 72850, 79827, 89008, 69984, 71880, 68924, 191524, 42949], "qty": [410, 409, 83, 62, 108, 55, 611, 306, 226, 226, 252, 198, 204, 195, 296, 113], "prices": [361.97, 324.83, 312.18, 348.97, 367.07, 301.27, 322.45, 335.1, 322.35, 353.22, 353.21, 353.45, 352.35, 353.46, 647.04, 380.08]}, {"name": "谷雨", "sales": [75800, 40689, 38857, 35370, 47860, 46183, 91872, 79618, 80253, 76771, 75522, 141283, 88835, 94950, 113759, 99071], "qty": [301, 155, 158, 146, 197, 181, 355, 321, 298, 313, 294, 545, 358, 365, 419, 362], "prices": [251.83, 262.51, 245.93, 242.26, 242.94, 255.15, 258.79, 248.03, 269.31, 245.27, 256.88, 259.23, 248.14, 260.14, 271.5, 273.68]}, {"name": "雏菊的天空", "sales": [77772, 43964, 68131, 56132, 43599, 39951, 41158, 62539, 63179, 52020, 54120, 57370, 57402, 63694, 109985, 96740], "qty": [410, 119, 394, 366, 274, 247, 263, 374, 459, 338, 360, 386, 295, 302, 420, 288], "prices": [189.69, 369.45, 172.92, 153.37, 159.12, 161.74, 156.49, 167.22, 137.64, 153.91, 150.33, 148.63, 194.58, 210.91, 261.87, 335.9]}, {"name": "馥郁满铺", "sales": [59397, 47286, 44809, 44512, 43842, 40417, 45816, 38422, 39093, 43129, 58157, 64994, 52364, 55432, 118494, 138921], "qty": [218, 187, 167, 165, 165, 165, 175, 138, 142, 167, 226, 258, 240, 222, 477, 557], "prices": [272.46, 252.87, 268.32, 269.77, 265.71, 244.95, 261.81, 278.42, 275.3, 258.26, 257.33, 251.91, 218.18, 249.69, 248.42, 249.41]}], "summary": [{"brand": "林清轩", "total_sales": 6915466, "total_qty": 27045, "avg_price": 255.7, "sales_pct": 26.46, "qty_pct": 22.97}, {"brand": "伊帕尔汗", "total_sales": 3293981, "total_qty": 38920, "avg_price": 84.63, "sales_pct": 12.6, "qty_pct": 33.05}, {"brand": "LAN蘭", "total_sales": 3142163, "total_qty": 8844, "avg_price": 355.29, "sales_pct": 12.02, "qty_pct": 7.51}, {"brand": "米加", "total_sales": 3044961, "total_qty": 8434, "avg_price": 361.03, "sales_pct": 11.65, "qty_pct": 7.16}, {"brand": "环球配方", "total_sales": 2733156, "total_qty": 9643, "avg_price": 283.43, "sales_pct": 10.46, "qty_pct": 8.19}, {"brand": "阿芙", "total_sales": 2482310, "total_qty": 7388, "avg_price": 335.99, "sales_pct": 9.5, "qty_pct": 6.27}, {"brand": "逐本", "total_sales": 1371530, "total_qty": 3754, "avg_price": 365.35, "sales_pct": 5.25, "qty_pct": 3.19}, {"brand": "谷雨", "total_sales": 1226693, "total_qty": 4768, "avg_price": 257.28, "sales_pct": 4.69, "qty_pct": 4.05}, {"brand": "雏菊的天空", "total_sales": 987756, "total_qty": 5295, "avg_price": 186.55, "sales_pct": 3.78, "qty_pct": 4.5}, {"brand": "馥郁满铺", "total_sales": 935085, "total_qty": 3669, "avg_price": 254.86, "sales_pct": 3.58, "qty_pct": 3.12}], "daily_all": {"sales": [1327283, 1229400, 1134995, 1082218, 903410, 1089101, 1602047, 2369600, 1800162, 1517222, 1819257, 1788388, 1680827, 1379438, 2817354, 2592399], "qty": [7113, 6267, 7149, 6638, 5043, 6125, 7789, 9218, 8215, 7136, 8233, 8017, 7303, 6231, 9393, 7890]}};
+const colors = ['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c','#e67e22','#34495e','#e84393','#00cec9'];
+const dates = chartData.dates;
+
+// Chart 1: Daily sales by brand
+new Chart(document.getElementById('chart1'), {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: chartData.brands.map((b,i) => ({ label:b.name, data:b.sales, borderColor:colors[i], backgroundColor:colors[i]+'20', borderWidth:2, pointRadius:3, tension:0.3 }))
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{y:{ticks:{callback:v=>(v/10000).toFixed(0)+'万'}}} }
+});
+
+// Chart 2: Daily qty by brand
+new Chart(document.getElementById('chart2'), {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: chartData.brands.map((b,i) => ({ label:b.name, data:b.qty, borderColor:colors[i], backgroundColor:colors[i]+'20', borderWidth:2, pointRadius:3, tension:0.3 }))
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}} }
+});
+
+// Chart 3: All brand daily sales bar
+new Chart(document.getElementById('chart3'), {
+    type: 'bar',
+    data: {
+        labels: dates,
+        datasets: [{ label:'销售额', data:chartData.daily_all.sales, backgroundColor:'#e74c3c', borderRadius:4 }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{ticks:{callback:v=>(v/10000).toFixed(0)+'万'}}} }
+});
+
+// Chart 4: Sales share pie
+new Chart(document.getElementById('chart4'), {
+    type: 'pie',
+    data: {
+        labels: chartData.summary.map(s=>s.brand),
+        datasets: [{ data: chartData.summary.map(s=>s.total_sales), backgroundColor: colors, borderWidth:2, borderColor:'#fff' }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'right',labels:{boxWidth:14,font:{size:12}}}} }
+});
+
+// Chart 5: Qty share pie
+new Chart(document.getElementById('chart5'), {
+    type: 'pie',
+    data: {
+        labels: chartData.summary.map(s=>s.brand),
+        datasets: [{ data: chartData.summary.map(s=>s.total_qty), backgroundColor: colors, borderWidth:2, borderColor:'#fff' }]
+    },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'right',labels:{boxWidth:14,font:{size:12}}}} }
+});
+</script>
+</body>
+</html>
